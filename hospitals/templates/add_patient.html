@@ -14,7 +14,9 @@
 {% if error == "no" %}
      <script>
 	   alert('Record Save Successfully');
-       window.location=('{% url 'view_patient' %}');
+    //    window.location=('{% url 'view_patient' %}');
+	   window.location = "{% url 'view_patient' %}";
+
      </script>
 {% endif %}
 
@@ -26,51 +28,68 @@
 
 <br><br><br><br>
 <div class="container card shadow m-5">
-		<div class="card-body">
-			<h5 class="p-2" style="border-bottom: 2px solid orange">Add Patient</h5>
-             <br>
-			<div class="container-fluid">
-				<form method="post">
-                    {% csrf_token %}
-					<div class="form-row">
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 2px solid orange">Add Patient</h5>
+        <br>
+        <div class="container-fluid">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-row">
 
-						<div class="col-sm-12">
-							<div class="form-group">
-								<label>Patient Name</label>
-								<input type="text" name="name" class="form-control" placeholder="Enter Doctor Name" required>
-							</div>
-						</div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Patient Name</label>
+                            <input type="text"
+                                   name="name"
+                                   class="form-control"
+                                   placeholder="Enter Patient Name"
+                                   pattern="^[A-Za-z\s]+$"
+                                   title="Please enter only letters and spaces."
+                                   required>
+                        </div>
+                    </div>
 
-                    	<div class="col-sm-12">
-							<div class="form-group">
-								<label>Mobile Number</label>
-								<input type="text" name="mobile" class="form-control" placeholder="Enter Ten Digit Mobile Number" required>
-							</div>
-						</div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text"
+                                   name="mobile"
+                                   class="form-control"
+                                   placeholder="Enter Ten Digit Mobile Number"
+                                   pattern="^\d{10}$"
+                                   title="Please enter exactly 10 digits."
+                                   required>
+                        </div>
+                    </div>
 
-						<div class="col-sm-12">
-							<div class="form-group">
-								<label>Gender</label>
-								<input type="radio" name="gender" value="Male"> Male
-								<input type="radio" name="gender" value="Female"> Female
-							</div>
-						</div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Gender</label><br>
+                            <input type="radio" name="gender" value="Male" required> Male
+                            <input type="radio" name="gender" value="Female" required> Female
+                        </div>
+                    </div>
 
-						<div class="col-sm-12">
-							<div class="form-group">
-								<label>Address</label>
-                                <textarea name="address" class="form-control" placeholder="Enter Doctor Specialization" required></textarea>
-							</div>
-						</div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea name="address"
+                                      class="form-control"
+                                      placeholder="Enter Address"
+                                      required
+                                      minlength="10"
+                                      title="Please enter your address (minimum 10 characters)."></textarea>
+                        </div>
+                    </div>
 
+                </div>
+                <hr>
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
 
-                      </div>
-					<hr>
-					<input type="submit" value="Submit" class="btn btn-primary">
-				</form>
-			</div>
-		</div>
-	</div>
 </body>
 </html>
 {% endblock content %}

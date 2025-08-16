@@ -217,4 +217,3 @@ def view_queries(request,pid):
     contact.isread = "yes"
     contact.save()
     return render(request,'view_queries.html', locals())
-
